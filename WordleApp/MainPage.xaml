@@ -18,7 +18,7 @@
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="model:Letter">
                                 <Button Style="{DynamicResource LetterButton}"
-                                        Text="{Binding Input}"
+                                        Text="{Binding İnput}"
                                         BackgroundColor="{Binding Color}"/>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
