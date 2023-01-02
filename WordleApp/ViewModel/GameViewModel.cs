@@ -9,6 +9,9 @@ namespace WordleApp.ViewModel
         int rowIndex;
         int columnIndex;
         char[] correctAnswer;
+        public char[] KeyboardRow1 { get; }
+        public char[] KeyboardRow2 { get; }
+        public char[] KeyboardRow3 { get; }
 
         [ObservableProperty]
         private WordRow[] rows;
@@ -25,10 +28,12 @@ namespace WordleApp.ViewModel
                 new WordRow()
             };
 
-            correctAnswer = "codes".ToCharArray();
+            correctAnswer = "CODES".ToCharArray();
+            KeyboardRow1 = "QWERTYUIOP".ToCharArray();
+            KeyboardRow2 = "ASDFGHJKL".ToCharArray();
+            KeyboardRow3 = "<ZXCVBNM>".ToCharArray();
         }
 
-        [ICommand]
         public void Enter()
         {
             if (columnIndex != 5)
@@ -53,8 +58,22 @@ namespace WordleApp.ViewModel
         [ICommand]
         public void EnterLetter(char letter)
         {
+            if(letter == '<')
+            {
+                Enter();
+                return;
+            }
+
+            if(letter == '>')
+            {
+                return;
+            }
+
             if (columnIndex == 5)
                 return;
+
+            Rows[rowIndex].Letters[columnIndex].İnput = letter;
+            columnIndex++;
         }
     }
 }
